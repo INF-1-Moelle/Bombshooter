@@ -5,7 +5,7 @@ import processing.core.PApplet;
 public class Main {
 
     public static void main(String[] args) {
-        PApplet.main(GameWindow.class);
+        PApplet.runSketch(new String[]{""}, GameWindow.getInstance());
     }
 
 }
