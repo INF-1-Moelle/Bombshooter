@@ -34,6 +34,7 @@ public class GameWindow extends PApplet {
     @Override
     public void draw() {
         background(255);
+        fill (0);
         ellipse (mouseX, mouseY, 20, 20);
     }
 
