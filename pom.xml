@@ -21,10 +21,37 @@
         <developer>
             <name>Felix Mölle</name>
             <email>klassenserver7bwin10@gmail.com</email>
-            <organization>Felix Mölle</organization>
+            <organization>Bombshooter</organization>
             <organizationUrl>https://github.com/klassenserver7b</organizationUrl>
             <roles>
                 <role>developer</role>
+            </roles>
+            <timezone>Europe/Berlin</timezone>
+        </developer>
+        <developer>
+            <name>PlumPudding</name>
+            <organization>Bombshooter</organization>
+            <organizationUrl>https://github.com/P1umPudding</organizationUrl>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>Europe/Berlin</timezone>
+        </developer>
+        <developer>
+            <name>Stortox</name>
+            <organization>Bombshooter</organization>
+            <organizationUrl>https://github.com/Stortox</organizationUrl>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>Europe/Berlin</timezone>
+        </developer>
+        <developer>
+            <name>Lolordord</name>
+            <organization>Bombshooter</organization>
+            <organizationUrl>https://github.com/Lolordord</organizationUrl>
+            <roles>
+                <role>designer</role>
             </roles>
             <timezone>Europe/Berlin</timezone>
         </developer>
