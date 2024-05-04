@@ -1,3 +1,5 @@
+package de.bombshooter.bombshooter;
+
 import processing.core.PApplet;
 
 public class GameWindow extends PApplet {
