@@ -20,7 +20,7 @@ public class GameWindow extends PApplet {
 
     @Override
     public void settings() {
-        size(1000, 1000, P2D);
+        size(displayWidth, displayHeight, P2D);
     }
 
     @Override
