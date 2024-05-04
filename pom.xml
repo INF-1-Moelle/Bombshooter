@@ -29,6 +29,15 @@
             <timezone>Europe/Berlin</timezone>
         </developer>
         <developer>
+            <name>Konsl</name>
+            <organization>Bombshooter</organization>
+            <organizationUrl>https://github.com/Konsl</organizationUrl>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>Europe/Berlin</timezone>
+        </developer>
+        <developer>
             <name>PlumPudding</name>
             <organization>Bombshooter</organization>
             <organizationUrl>https://github.com/P1umPudding</organizationUrl>
