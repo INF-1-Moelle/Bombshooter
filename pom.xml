@@ -13,41 +13,19 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
     <repositories>
-        <repository>
-            <id>cytoscape_releases</id>
-            <name>Cytoscape Releases</name>
-            <url>https://nrnb-nexus.ucsd.edu/repository/cytoscape_releases/</url>
-        </repository>
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
     </repositories>
+
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.processing/core -->
         <dependency>
-            <groupId>org.processing</groupId>
-            <artifactId>core</artifactId>
-            <version>3.3.7</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.processing/jogl -->
-        <dependency>
-            <groupId>org.processing</groupId>
-            <artifactId>jogl</artifactId>
-            <version>1.2.1</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.processing/gluegen-rt -->
-        <dependency>
-            <groupId>org.processing</groupId>
-            <artifactId>gluegen-rt</artifactId>
-            <version>1.2.1</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.github.processing/processing-sound -->
-        <dependency>
-            <groupId>com.github.processing</groupId>
-            <artifactId>processing-sound</artifactId>
-            <version>2.3.1</version>
+            <groupId>com.github.micycle1</groupId>
+            <artifactId>processing-core-4</artifactId>
+            <version>4.3</version>
         </dependency>
     </dependencies>
 </project>
