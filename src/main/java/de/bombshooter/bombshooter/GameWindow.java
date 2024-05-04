@@ -47,7 +47,7 @@ public class GameWindow extends PApplet {
         uiHandler.onResize(newWidth, newHeight);
     }
 
-    public UIHandler getUiHandler() {
+    public UIHandler getUIHandler() {
         return uiHandler;
     }
 }
