@@ -28,11 +28,13 @@ public class GameWindow extends PApplet {
         surface.setResizable(true);
         noStroke();
         background(0);
-        frameRate(30);
+        //frameRate(30);
     }
 
     @Override
     public void draw() {
+        background(255);
+        ellipse (mouseX, mouseY, 20, 20);
     }
 
 }
