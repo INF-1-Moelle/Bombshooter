@@ -1,5 +1,7 @@
 package de.bombshooter.bombshooter.level;
 
+import de.bombshooter.bombshooter.GameWindow;
+import de.bombshooter.bombshooter.ui.elements.Bar;
 import processing.core.PGraphics;
 
 import java.util.ArrayList;
@@ -22,6 +24,8 @@ public class Level {
                 element.draw(gfx);
             }
         }
+
+        ((Bar) GameWindow.getInstance().getUIHandler().getElement("healthbar")).setValueTo(300 /*health*/);
     }
 
 }

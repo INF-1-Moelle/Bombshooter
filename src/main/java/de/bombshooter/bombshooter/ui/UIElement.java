@@ -65,4 +65,5 @@ public abstract class UIElement {
     }
 
     protected abstract void onDraw(PGraphics gfx);
+    protected abstract String getId();
 }

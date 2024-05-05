@@ -14,15 +14,7 @@ public abstract class LevelElement {
     }
 
     public void draw(PGraphics gfx) {
-
-        // background
         onDraw(gfx);
-
-        // childs
-        gfx.pushMatrix();
-        gfx.translate(position.x, position.y);
-
-        gfx.popMatrix();
     }
 
     public PVector getPosition() {

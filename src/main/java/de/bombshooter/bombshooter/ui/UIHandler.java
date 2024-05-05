@@ -3,22 +3,31 @@ package de.bombshooter.bombshooter.ui;
 import processing.core.PGraphics;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class UIHandler {
 
-    private ArrayList<UIElement> elements = new ArrayList<>();
+    private HashMap<String, UIElement> elements = new HashMap<>();
 
 
     public void addElement(UIElement element) {
-        elements.add(element);
+        elements.put(element.getId(), element);
     }
 
     public void removeElement(UIElement element) {
-        elements.remove(element);
+        removeElement(element.getId());
     }
 
-    public void  draw(PGraphics gfx) {
-        for (UIElement element : elements) {
+    public void removeElement(String Id) {
+        elements.remove(Id);
+    }
+
+    public UIElement getElement(String Id) {
+        return elements.get(Id);
+    }
+
+    public void draw(PGraphics gfx) {
+        for (UIElement element : elements.values()) {
             if (element.isVisible()) {
                 element.draw(gfx);
             }
@@ -28,6 +37,7 @@ public class UIHandler {
     public void onResize(int newWidth, int newHeight) {
 
     }
+
 
 //    public float th (float h) {
 //        return height/720.0 * h;
