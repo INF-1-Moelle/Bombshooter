@@ -1,29 +1,31 @@
-package de.bombshooter.bombshooter.ui;
+package de.bombshooter.bombshooter.level;
 
+import de.bombshooter.bombshooter.ui.UIElement;
 import processing.core.PGraphics;
 import processing.core.PVector;
-import processing.opengl.PGraphics3D;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class UIElement {
+public abstract class LevelElement {
 
     private boolean visible;
     private PVector position;
     private PVector size;
-    private List<UIElement> childs;
+    private List<LevelElement> childs;
 
-    public UIElement()
+    public LevelElement() {
+        childs = new ArrayList<>();
+        visible = true;
+    }
 
-    public void addChild(UIElement child) {
+    public void addChild(LevelElement child) {
         childs.add(child);
     }
 
-    public void removeChild(UIElement child) {
+    public void removeChild(LevelElement child) {
         childs.remove(child);
     }
-
 
     public void draw(PGraphics gfx) {
 
@@ -34,7 +36,7 @@ public abstract class UIElement {
         gfx.pushMatrix();
         gfx.translate(position.x, position.y);
 
-        for (UIElement element : childs) {
+        for (LevelElement element : childs) {
             if (element.isVisible())
                 element.draw(gfx);
         }
@@ -50,7 +52,7 @@ public abstract class UIElement {
         return size;
     }
 
-    public List<UIElement> getChilds() {
+    public List<LevelElement> getChilds() {
         return childs;
     }
 
