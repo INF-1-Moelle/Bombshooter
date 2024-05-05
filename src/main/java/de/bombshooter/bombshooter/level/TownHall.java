@@ -1,6 +1,7 @@
 package de.bombshooter.bombshooter.level;
 
 import de.bombshooter.bombshooter.GameWindow;
+import de.bombshooter.bombshooter.generics.TileablePImage;
 import processing.core.PGraphics;
 import processing.core.PVector;
 
@@ -13,14 +14,15 @@ public class TownHall extends DamageableLevelObject {
     /**
      * Draw the element
      * Should be called in the draw method of {@link de.bombshooter.bombshooter.level.Level}
+     *
      * @param gfx The graphics object to draw on
      */
     @Override
     protected void onDraw(PGraphics gfx) {
-        var image = GameWindow.getInstance().getMediaManager().loadImageById("level.townhall");
+        TileablePImage tileablePImage = GameWindow.getInstance().getMediaManager().loadImageById("level.townhall");
         gfx.pushMatrix();
         //gfx.translate(getPosition().x, getPosition().y);
-        gfx.image(image, (gfx.width / 2f) - 50, (gfx.height / 2f) - 50, getSize().x, getSize().y);
+        gfx.image(tileablePImage.getImage(), getPosition().y, getPosition().y, getSize().x, getSize().y);
         gfx.popMatrix();
     }
 

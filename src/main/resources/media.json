@@ -3,9 +3,25 @@
   "textures": {
     "level.background": {
       "file": "background.png",
+      "width": 64,
+      "height": 64,
       "tiled": true,
-      "tilewidth": 32,
-      "tileheight": 32
+      "tilewidth": 16,
+      "tileheight": 16
+    },
+    "level.townhall": {
+      "file": "townhall.png",
+      "width": 60,
+      "height": 60,
+      "tiled": false
+    },
+    "ui.healthbar": {
+      "file": "healthbar.png",
+      "width": 46,
+      "height": 430,
+      "tiled": true,
+      "tilewidth": 46,
+      "tileheight": 10
     }
   }
 }

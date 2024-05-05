@@ -76,6 +76,7 @@ public class GameWindow extends PApplet {
         background(255);
         fill(0);
         ellipse(mouseX, mouseY, 20, 20);
+
         uiHandler.draw(getGraphics());
         level.draw(getGraphics());
     }
@@ -83,8 +84,8 @@ public class GameWindow extends PApplet {
     /**
      * Called when the window is resized
      *
-     * @param newWidth
-     * @param newHeight
+     * @param newWidth the new width of the window
+     * @param newHeight the new height of the window
      */
     @Override
     public void windowResize(int newWidth, int newHeight) {

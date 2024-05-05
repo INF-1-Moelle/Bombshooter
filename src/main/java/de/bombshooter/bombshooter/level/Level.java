@@ -25,9 +25,9 @@ public class Level {
      */
     public void initDefaultObjects(PGraphics gfx) {
 
-        PVector townHallSize = new PVector(100, 100);
-
+        PVector townHallSize = new PVector(60, 60);
         this.townHall = new TownHall(new PVector((gfx.width / 2f) - (townHallSize.x / 2), (gfx.height / 2f) - (townHallSize.y / 2)), townHallSize);
+
         this.background = new LevelBackground(new PVector(gfx.width, gfx.height));
 
         addElement(background);
@@ -57,6 +57,7 @@ public class Level {
     /**
      * Draw all elements of the level
      * Should be called in the draw method of {@link de.bombshooter.bombshooter.GameWindow}
+     *
      * @param gfx the graphics object to draw the elements on
      */
     public void draw(PGraphics gfx) {
