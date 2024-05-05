@@ -7,7 +7,11 @@ public abstract class DrawableElement {
     private boolean visible;
 
     public DrawableElement() {
-        this.visible = true;
+        this(true);
+    }
+
+    public DrawableElement(boolean visible) {
+        this.visible = visible;
     }
 
     public void setVisible(boolean visible) {

@@ -4,13 +4,15 @@ import de.bombshooter.bombshooter.generics.DrawableElement;
 import processing.core.PGraphics;
 import processing.core.PVector;
 
-public abstract class LevelElement extends DrawableElement {
+public abstract class LevelObject extends DrawableElement {
 
     private PVector position;
     private PVector size;
 
-    public LevelElement() {
+    public LevelObject(PVector position, PVector size) {
         super();
+        this.position = position;
+        this.size = size;
     }
 
     public void draw(PGraphics gfx) {

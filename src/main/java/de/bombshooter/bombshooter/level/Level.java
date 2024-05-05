@@ -8,18 +8,18 @@ import java.util.ArrayList;
 
 public class Level {
 
-    private ArrayList<LevelElement> elements = new ArrayList<>();
+    private ArrayList<LevelObject> elements = new ArrayList<>();
 
-    public void addElement(LevelElement element) {
+    public void addElement(LevelObject element) {
         elements.add(element);
     }
 
-    public void removeElement(LevelElement element) {
+    public void removeElement(LevelObject element) {
         elements.remove(element);
     }
 
     public void  draw(PGraphics gfx) {
-        for (LevelElement element : elements) {
+        for (LevelObject element : elements) {
             if (element.isVisible()) {
                 element.draw(gfx);
             }

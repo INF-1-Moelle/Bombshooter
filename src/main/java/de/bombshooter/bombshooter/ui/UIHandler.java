@@ -2,7 +2,6 @@ package de.bombshooter.bombshooter.ui;
 
 import processing.core.PGraphics;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class UIHandler {
