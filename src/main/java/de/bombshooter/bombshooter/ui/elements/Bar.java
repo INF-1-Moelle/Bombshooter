@@ -10,8 +10,8 @@ public class Bar extends UIElement {
     private float value;
     private float maxValue;
 
-    public Bar(float x, float y, float width, float height) {
-        super(new PVector(x, y), new PVector(width, height));
+    public Bar(float x, float y, float width, float height, String id) {
+        super(new PVector(x, y), new PVector(width, height), id);
         this.value = 0;
         this.maxValue = 100;
     }
@@ -19,11 +19,6 @@ public class Bar extends UIElement {
     @Override
     protected void onDraw(PGraphics gfx) {
         //TODO
-    }
-
-    @Override
-    protected String getId() {
-        return "healthbar";
     }
 
     public void setValueTo(float value) {

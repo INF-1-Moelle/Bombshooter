@@ -8,8 +8,8 @@ public class Button extends UIElement {
 
         private String text;
 
-        public Button(PVector position, PVector size) {
-                super(position, size);
+        public Button(PVector position, PVector size, String id) {
+                super(position, size, id);
         }
 
         @Override

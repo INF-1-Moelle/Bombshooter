@@ -8,14 +8,16 @@ import java.util.List;
 
 public abstract class UIElement extends DrawableElement {
 
-    private PVector position;
-    private PVector size;
+    private final PVector position;
+    private final PVector size;
     private List<UIElement> childs;
+    private final String id;
 
-    public UIElement(PVector position, PVector size) {
+    public UIElement(PVector position, PVector size, String id) {
         super();
         this.position = position;
         this.size = size;
+        this.id = id;
     }
 
     public void addChild(UIElement child) {
@@ -56,5 +58,7 @@ public abstract class UIElement extends DrawableElement {
         return childs;
     }
 
-    protected abstract String getId();
+    protected String getId(){
+        return id;
+    }
 }

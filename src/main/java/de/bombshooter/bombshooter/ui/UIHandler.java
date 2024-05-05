@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class UIHandler {
 
-    private HashMap<String, UIElement> elements = new HashMap<>();
+    private final HashMap<String, UIElement> elements = new HashMap<>();
 
 
     public void addElement(UIElement element) {

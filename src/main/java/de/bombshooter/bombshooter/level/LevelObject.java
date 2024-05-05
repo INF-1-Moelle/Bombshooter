@@ -6,8 +6,8 @@ import processing.core.PVector;
 
 public abstract class LevelObject extends DrawableElement {
 
-    private PVector position;
-    private PVector size;
+    private final PVector position;
+    private final PVector size;
 
     public LevelObject(PVector position, PVector size) {
         super();

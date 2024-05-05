@@ -7,6 +7,7 @@ import processing.core.PApplet;
 public class GameWindow extends PApplet {
 
     private static GameWindow INSTANCE = null;
+    private final MediaManager mediaMgr;
     private final UIHandler uiHandler;
     private final Level level;
 
@@ -20,6 +21,7 @@ public class GameWindow extends PApplet {
 
     private GameWindow() {
         INSTANCE = this;
+        this.mediaMgr = new MediaManager();
         this.uiHandler = new UIHandler();
         this.level = new Level();
     }
@@ -49,6 +51,8 @@ public class GameWindow extends PApplet {
     public void windowResize(int newWidth, int newHeight) {
         uiHandler.onResize(newWidth, newHeight);
     }
+
+    public MediaManager getMediaManager(){return mediaMgr;}
 
     public UIHandler getUIHandler() {
         return uiHandler;
