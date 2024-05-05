@@ -2,9 +2,7 @@ package de.bombshooter.bombshooter.ui;
 
 import processing.core.PGraphics;
 import processing.core.PVector;
-import processing.opengl.PGraphics3D;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class UIElement {
@@ -14,9 +12,10 @@ public abstract class UIElement {
     private PVector size;
     private List<UIElement> childs;
 
-    public UIElement() {
-        childs = new ArrayList<>();
-        visible = true;
+    public UIElement(PVector position, PVector size) {
+        this.visible = true;
+        this.position = position;
+        this.size = size;
     }
 
     public void addChild(UIElement child) {
@@ -66,4 +65,5 @@ public abstract class UIElement {
     }
 
     protected abstract void onDraw(PGraphics gfx);
+    protected abstract String getId();
 }

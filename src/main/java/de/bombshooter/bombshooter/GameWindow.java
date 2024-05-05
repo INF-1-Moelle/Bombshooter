@@ -1,5 +1,6 @@
 package de.bombshooter.bombshooter;
 
+import de.bombshooter.bombshooter.level.Level;
 import de.bombshooter.bombshooter.ui.UIHandler;
 import processing.core.PApplet;
 
@@ -7,6 +8,7 @@ public class GameWindow extends PApplet {
 
     private static GameWindow INSTANCE = null;
     private final UIHandler uiHandler;
+    private final Level level;
 
     public static GameWindow getInstance() {
         if (INSTANCE == null) {
@@ -19,6 +21,7 @@ public class GameWindow extends PApplet {
     private GameWindow() {
         INSTANCE = this;
         this.uiHandler = new UIHandler();
+        this.level = new Level();
     }
 
     @Override
@@ -37,8 +40,8 @@ public class GameWindow extends PApplet {
     @Override
     public void draw() {
         background(255);
-        fill (0);
-        ellipse (mouseX, mouseY, 20, 20);
+        fill(0);
+        ellipse(mouseX, mouseY, 20, 20);
         uiHandler.draw(getGraphics());
     }
 
@@ -47,7 +50,11 @@ public class GameWindow extends PApplet {
         uiHandler.onResize(newWidth, newHeight);
     }
 
-    public UIHandler getUiHandler() {
+    public UIHandler getUIHandler() {
         return uiHandler;
+    }
+
+    public Level getLevel() {
+        return level;
     }
 }
