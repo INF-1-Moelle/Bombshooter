@@ -12,7 +12,11 @@ public abstract class UIElement {
     private PVector size;
     private List<UIElement> childs;
 
-    public UIElement()
+    public UIElement(PVector position, PVector size) {
+        this.visible = true;
+        this.position = position;
+        this.size = size;
+    }
 
     public void addChild(UIElement child) {
         childs.add(child);

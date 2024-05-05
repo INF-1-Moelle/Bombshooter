@@ -1,13 +1,14 @@
 package de.bombshooter.bombshooter.ui;
 
 import processing.core.PGraphics;
+import processing.core.PVector;
 
 public class Button extends UIElement {
 
         private String text;
 
-        public Button() {
-            super();
+        public Button(PVector position, PVector size) {
+                super(position, size);
         }
 
         @Override
