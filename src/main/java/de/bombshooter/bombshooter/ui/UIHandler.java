@@ -38,21 +38,4 @@ public class UIHandler {
 
     }
 
-
-//    public float th (float h) {
-//        return height/720.0 * h;
-//    }
-//    public float tw (float w) {
-//        return width/1280.0 * w;
-//    }
-//    public float ty (float y) {
-//        return height/720.0 * y;
-//    }
-//    public float tx (float x) {
-//        return width/1280.0 * x;
-//    }
-//    public float tt (float t) {
-//        return min(height/720.0, width/1280.0) * t;
-//    }
-
 }

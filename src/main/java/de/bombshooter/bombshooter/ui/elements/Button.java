@@ -13,6 +13,11 @@ public class Button extends UIElement {
         }
 
         @Override
+        protected String getId() {
+                return "button";
+        }
+
+        @Override
         protected void onDraw(PGraphics gfx) {
                 gfx.fill(0);
                 gfx.rect(50,50,200,100);

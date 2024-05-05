@@ -1,19 +1,19 @@
 package de.bombshooter.bombshooter.ui;
 
+import de.bombshooter.bombshooter.generics.DrawableElement;
 import processing.core.PGraphics;
 import processing.core.PVector;
 
 import java.util.List;
 
-public abstract class UIElement {
+public abstract class UIElement extends DrawableElement {
 
-    private boolean visible;
     private PVector position;
     private PVector size;
     private List<UIElement> childs;
 
     public UIElement(PVector position, PVector size) {
-        this.visible = true;
+        super();
         this.position = position;
         this.size = size;
     }
@@ -56,14 +56,5 @@ public abstract class UIElement {
         return childs;
     }
 
-    public void setVisible(boolean visible) {
-        this.visible = visible;
-    }
-
-    public boolean isVisible() {
-        return visible;
-    }
-
-    protected abstract void onDraw(PGraphics gfx);
     protected abstract String getId();
 }

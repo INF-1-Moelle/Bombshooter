@@ -1,16 +1,16 @@
 package de.bombshooter.bombshooter.level;
 
+import de.bombshooter.bombshooter.generics.DrawableElement;
 import processing.core.PGraphics;
 import processing.core.PVector;
 
-public abstract class LevelElement {
+public abstract class LevelElement extends DrawableElement {
 
-    private boolean visible;
     private PVector position;
     private PVector size;
 
     public LevelElement() {
-        visible = true;
+        super();
     }
 
     public void draw(PGraphics gfx) {
@@ -24,14 +24,4 @@ public abstract class LevelElement {
     public PVector getSize() {
         return size;
     }
-
-    public void setVisible(boolean visible) {
-        this.visible = visible;
-    }
-
-    public boolean isVisible() {
-        return visible;
-    }
-
-    protected abstract void onDraw(PGraphics gfx);
 }
