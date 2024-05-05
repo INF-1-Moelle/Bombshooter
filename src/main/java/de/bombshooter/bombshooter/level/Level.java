@@ -9,15 +9,23 @@ import java.util.ArrayList;
 
 public class Level {
 
-    private final TownHall townHall;
-    private final ArrayList<LevelObject> elements = new ArrayList<>();
+    private TownHall townHall;
+    private LevelBackground background;
+    private final ArrayList<LevelObject> elements;
 
-    public Level(){
+    public Level() {
+        elements = new ArrayList<>();
+    }
 
-        PGraphics gfx = GameWindow.getInstance().getGraphics();
-        PVector townHallSize = new PVector(100,100);
-        this.townHall = new TownHall(new PVector((gfx.width/2)-(townHallSize.x/2), (gfx.height/2)-(townHallSize.x/2)), townHallSize);
+    public void initDefaultObjects(PGraphics gfx) {
 
+        PVector townHallSize = new PVector(100, 100);
+
+        this.townHall = new TownHall(new PVector((gfx.width / 2) - (townHallSize.x / 2), (gfx.height / 2) - (townHallSize.x / 2)), townHallSize);
+        this.background = new LevelBackground(new PVector(gfx.width, gfx.height));
+
+        addElement(background);
+        addElement(townHall);
     }
 
     public void addElement(LevelObject element) {
@@ -34,8 +42,6 @@ public class Level {
                 element.draw(gfx);
             }
         }
-
-        ((Bar) GameWindow.getInstance().getUIHandler().getElement("healthbar")).setValueTo(300 /*health*/);
     }
 
     public TownHall getTownHall() {

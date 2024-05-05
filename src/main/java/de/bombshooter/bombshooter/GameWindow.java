@@ -4,12 +4,17 @@ import de.bombshooter.bombshooter.level.Level;
 import de.bombshooter.bombshooter.ui.UIHandler;
 import processing.core.PApplet;
 
+import java.io.IOException;
+import java.util.logging.Logger;
+
 public class GameWindow extends PApplet {
 
     private static GameWindow INSTANCE = null;
     private final MediaManager mediaMgr;
     private final UIHandler uiHandler;
     private final Level level;
+
+    private final Logger logger = Logger.getLogger(GameWindow.class.getName());
 
     public static GameWindow getInstance() {
         if (INSTANCE == null) {
@@ -28,11 +33,22 @@ public class GameWindow extends PApplet {
 
     @Override
     public void settings() {
+
+        try {
+            mediaMgr.init("bombshooter-media", "v1");
+        } catch (IOException e) {
+            logger.log(java.util.logging.Level.SEVERE, "Failed initialize MediaManager", e);
+            System.exit(-1);
+        }
+
         size(displayWidth, displayHeight, P2D);
     }
 
     @Override
     public void setup() {
+
+        level.initDefaultObjects(getGraphics());
+
         surface.setResizable(true);
         noStroke();
         background(0);
@@ -45,6 +61,7 @@ public class GameWindow extends PApplet {
         fill(0);
         ellipse(mouseX, mouseY, 20, 20);
         uiHandler.draw(getGraphics());
+        level.draw(getGraphics());
     }
 
     @Override
@@ -52,7 +69,9 @@ public class GameWindow extends PApplet {
         uiHandler.onResize(newWidth, newHeight);
     }
 
-    public MediaManager getMediaManager(){return mediaMgr;}
+    public MediaManager getMediaManager() {
+        return mediaMgr;
+    }
 
     public UIHandler getUIHandler() {
         return uiHandler;

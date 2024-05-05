@@ -11,6 +11,14 @@ public class Enemy extends DamageableLevelObject {
     }
 
     /**
+     *
+     */
+    @Override
+    protected void onDeath() {
+
+    }
+
+    /**
      * @param gfx
      */
     @Override
