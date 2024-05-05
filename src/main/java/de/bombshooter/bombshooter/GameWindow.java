@@ -2,11 +2,12 @@ package de.bombshooter.bombshooter;
 
 import de.bombshooter.bombshooter.level.Level;
 import de.bombshooter.bombshooter.ui.UIHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import processing.core.PApplet;
 import processing.opengl.PGraphicsOpenGL;
 
 import java.io.IOException;
-import java.util.logging.Logger;
 
 public class GameWindow extends PApplet {
 
@@ -15,7 +16,7 @@ public class GameWindow extends PApplet {
     private final UIHandler uiHandler;
     private final Level level;
 
-    private final Logger logger = Logger.getLogger(GameWindow.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(GameWindow.class);
 
     public static GameWindow getInstance() {
         if (INSTANCE == null) {
@@ -43,7 +44,7 @@ public class GameWindow extends PApplet {
         try {
             mediaMgr.init("bombshooter-media", "v1");
         } catch (IOException e) {
-            logger.log(java.util.logging.Level.SEVERE, "Failed initialize MediaManager", e);
+            logger.info("Failed initialize MediaManager", e);
             System.exit(-1);
         }
 
@@ -57,7 +58,7 @@ public class GameWindow extends PApplet {
      */
     @Override
     public void setup() {
-        ((PGraphicsOpenGL)g).textureSampling(2);    //https://github.com/benfry/processing4/blob/main/core/src/processing/opengl/Texture.java#L54-L68C44
+        ((PGraphicsOpenGL) g).textureSampling(2);    //https://github.com/benfry/processing4/blob/main/core/src/processing/opengl/Texture.java#L54-L68C44
         frameRate(60);
         level.initDefaultObjects(getGraphics());
         surface.setResizable(true);

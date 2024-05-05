@@ -33,7 +33,7 @@ public class Level {
         addElement(background);
         addElement(townHall);
 
-        GameWindow.getInstance().getUIHandler().addElement(new Bar(50, 50, 46 * 5, 10 * 5, "testbutton"));
+        GameWindow.getInstance().getUIHandler().addElement(new Bar(50, 50, 46, 10, "testbutton"));
     }
 
     /**

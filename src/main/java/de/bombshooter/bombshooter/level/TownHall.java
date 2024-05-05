@@ -17,7 +17,11 @@ public class TownHall extends DamageableLevelObject {
      */
     @Override
     protected void onDraw(PGraphics gfx) {
-
+        var image = GameWindow.getInstance().getMediaManager().loadImageById("level.townhall");
+        gfx.pushMatrix();
+        //gfx.translate(getPosition().x, getPosition().y);
+        gfx.image(image, (gfx.width / 2f) - 50, (gfx.height / 2f) - 50, getSize().x, getSize().y);
+        gfx.popMatrix();
     }
 
     /**

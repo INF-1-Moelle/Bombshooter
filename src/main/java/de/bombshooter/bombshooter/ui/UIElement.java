@@ -79,7 +79,7 @@ public abstract class UIElement extends DrawableElement {
      * @return the size as a {@link PVector}
      */
     public PVector getSize() {
-        return size.copy().mult(getScale());
+        return size;
     }
 
     public float getScale() {

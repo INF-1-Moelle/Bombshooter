@@ -1,0 +1,11 @@
+{
+  "game.mediadirformat": "$mediadir/$version/",
+  "textures": {
+    "level.background": {
+      "file": "background.png",
+      "tiled": true,
+      "tilewidth": 32,
+      "tileheight": 32
+    }
+  }
+}
