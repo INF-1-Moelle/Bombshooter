@@ -11,7 +11,7 @@ public class Enemy extends DamageableLevelObject {
     }
 
     /**
-     *
+     * Called upon death of the object
      */
     @Override
     protected void onDeath() {
@@ -19,13 +19,9 @@ public class Enemy extends DamageableLevelObject {
     }
 
     /**
-     * @param gfx
+     * Calculate the direction to the town hall
+     * @return direction to the town hall as a {@link processing.core.PVector}
      */
-    @Override
-    protected void onDraw(PGraphics gfx) {
-
-    }
-
     public PVector calcDirection() {
         PVector target = GameWindow.getInstance().getLevel().getTownHall().getPosition();
         PVector direction = target.copy().sub(getPosition());
@@ -33,4 +29,13 @@ public class Enemy extends DamageableLevelObject {
     }
 
 
+    /**
+     * Draw the element
+     * Should be called in the draw method of {@link de.bombshooter.bombshooter.level.Level}
+     * @param gfx The graphics object to draw on
+     */
+    @Override
+    protected void onDraw(PGraphics gfx) {
+
+    }
 }

@@ -10,6 +10,11 @@ public class Arrow extends LevelObject {
         super(pos, size);
     }
 
+    /**
+     * Draw the element
+     * Should be called in the draw method of {@link de.bombshooter.bombshooter.level.Level}
+     * @param gfx The graphics object to draw on
+     */
     @Override
     protected void onDraw(PGraphics gfx) {
 

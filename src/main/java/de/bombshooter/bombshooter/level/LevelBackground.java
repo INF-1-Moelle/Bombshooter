@@ -11,8 +11,11 @@ public class LevelBackground extends LevelObject {
         super(new PVector(0, 0), size);
     }
 
+
     /**
-     * @param gfx
+     * Draw the element
+     * Should be called in the draw method of {@link de.bombshooter.bombshooter.level.Level}
+     * @param gfx The graphics object to draw on
      */
     @Override
     protected void onDraw(PGraphics gfx) {

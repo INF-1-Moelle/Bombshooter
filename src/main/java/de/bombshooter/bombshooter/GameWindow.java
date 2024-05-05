@@ -3,6 +3,7 @@ package de.bombshooter.bombshooter;
 import de.bombshooter.bombshooter.level.Level;
 import de.bombshooter.bombshooter.ui.UIHandler;
 import processing.core.PApplet;
+import processing.opengl.PGraphicsOpenGL;
 
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -31,6 +32,11 @@ public class GameWindow extends PApplet {
         this.level = new Level();
     }
 
+    /**
+     * The Processing settings method
+     *
+     * @see <a href="https://processing.org/reference">Processing Documentation</a>
+     */
     @Override
     public void settings() {
 
@@ -44,17 +50,26 @@ public class GameWindow extends PApplet {
         size(displayWidth, displayHeight, P2D);
     }
 
+    /**
+     * The Processing setup method
+     *
+     * @see <a href="https://processing.org/reference">Processing Documentation</a>
+     */
     @Override
     public void setup() {
-
+        ((PGraphicsOpenGL)g).textureSampling(2);    //https://github.com/benfry/processing4/blob/main/core/src/processing/opengl/Texture.java#L54-L68C44
+        frameRate(60);
         level.initDefaultObjects(getGraphics());
-
         surface.setResizable(true);
         noStroke();
         background(0);
-        frameRate(60);
     }
 
+    /**
+     * The Processing draw method
+     *
+     * @see <a href="https://processing.org/reference">Processing Documentation</a>
+     */
     @Override
     public void draw() {
         background(255);
@@ -64,19 +79,40 @@ public class GameWindow extends PApplet {
         level.draw(getGraphics());
     }
 
+    /**
+     * Called when the window is resized
+     *
+     * @param newWidth
+     * @param newHeight
+     */
     @Override
     public void windowResize(int newWidth, int newHeight) {
         uiHandler.onResize(newWidth, newHeight);
     }
 
+    /**
+     * Retrieve the MediaManager instance
+     *
+     * @return the MediaManager instance
+     */
     public MediaManager getMediaManager() {
         return mediaMgr;
     }
 
+    /**
+     * Retrieve the UIHandler instance
+     *
+     * @return the UIHandler instance
+     */
     public UIHandler getUIHandler() {
         return uiHandler;
     }
 
+    /**
+     * Retrieve the Level instance
+     *
+     * @return the Level instance
+     */
     public Level getLevel() {
         return level;
     }

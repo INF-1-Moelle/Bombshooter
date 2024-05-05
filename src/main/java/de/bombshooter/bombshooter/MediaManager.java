@@ -1,11 +1,9 @@
 package de.bombshooter.bombshooter;
 
 import processing.awt.PImageAWT;
-import processing.awt.ShimAWT;
 import processing.core.PImage;
 
 import javax.imageio.ImageIO;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -16,7 +14,6 @@ public class MediaManager {
 
     public MediaManager() {
         prop = new Properties();
-
     }
 
     protected void init(String mediaDir, String version) throws IOException {

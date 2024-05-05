@@ -6,20 +6,22 @@ import processing.core.PVector;
 
 public class TownHall extends DamageableLevelObject {
 
-    public TownHall(PVector pos, PVector size){
-       super(pos, size, -1);
+    public TownHall(PVector pos, PVector size) {
+        super(pos, size, -1);
     }
 
     /**
-     * @param gfx
+     * Draw the element
+     * Should be called in the draw method of {@link de.bombshooter.bombshooter.level.Level}
+     * @param gfx The graphics object to draw on
      */
     @Override
     protected void onDraw(PGraphics gfx) {
-        GameWindow.getInstance().getLevel();
+
     }
 
     /**
-     *
+     * Called upon death of the object
      */
     @Override
     protected void onDeath() {
