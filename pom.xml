@@ -56,6 +56,15 @@
             <timezone>Europe/Berlin</timezone>
         </developer>
         <developer>
+            <name>Robocraft999</name>
+            <organization>Bombshooter</organization>
+            <organizationUrl>https://github.com/Robocraft999</organizationUrl>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>Europe/Berlin</timezone>
+        </developer>
+        <developer>
             <name>Lolordord</name>
             <organization>Bombshooter</organization>
             <organizationUrl>https://github.com/Lolordord</organizationUrl>
