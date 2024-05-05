@@ -21,10 +21,55 @@
         <developer>
             <name>Felix Mölle</name>
             <email>klassenserver7bwin10@gmail.com</email>
-            <organization>Felix Mölle</organization>
+            <organization>Bombshooter</organization>
             <organizationUrl>https://github.com/klassenserver7b</organizationUrl>
             <roles>
                 <role>developer</role>
+            </roles>
+            <timezone>Europe/Berlin</timezone>
+        </developer>
+        <developer>
+            <name>Konsl</name>
+            <organization>Bombshooter</organization>
+            <organizationUrl>https://github.com/Konsl</organizationUrl>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>Europe/Berlin</timezone>
+        </developer>
+        <developer>
+            <name>PlumPudding</name>
+            <organization>Bombshooter</organization>
+            <organizationUrl>https://github.com/P1umPudding</organizationUrl>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>Europe/Berlin</timezone>
+        </developer>
+        <developer>
+            <name>Stortox</name>
+            <organization>Bombshooter</organization>
+            <organizationUrl>https://github.com/Stortox</organizationUrl>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>Europe/Berlin</timezone>
+        </developer>
+        <developer>
+            <name>Robocraft999</name>
+            <organization>Bombshooter</organization>
+            <organizationUrl>https://github.com/Robocraft999</organizationUrl>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>Europe/Berlin</timezone>
+        </developer>
+        <developer>
+            <name>Lolordord</name>
+            <organization>Bombshooter</organization>
+            <organizationUrl>https://github.com/Lolordord</organizationUrl>
+            <roles>
+                <role>designer</role>
             </roles>
             <timezone>Europe/Berlin</timezone>
         </developer>
@@ -176,6 +221,29 @@
             <groupId>com.github.micycle1</groupId>
             <artifactId>processing-core-4</artifactId>
             <version>4.3</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10.1</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>1.5.6</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.13</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.5.6</version>
         </dependency>
     </dependencies>
 </project>
