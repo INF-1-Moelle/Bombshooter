@@ -12,6 +12,12 @@ on:
   push:
     branches: [ "main" ]
 
+permissions:
+    actions: write
+    contents: write
+    statuses: write
+
+
 jobs:
   build:
 
