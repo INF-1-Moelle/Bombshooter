@@ -2,9 +2,7 @@ package de.bombshooter.bombshooter.ui;
 
 import processing.core.PGraphics;
 import processing.core.PVector;
-import processing.opengl.PGraphics3D;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class UIElement {
