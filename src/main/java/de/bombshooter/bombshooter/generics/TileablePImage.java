@@ -19,6 +19,12 @@ public class TileablePImage {
         this.tiled = tiled;
     }
 
+    /**
+     * Should not be used inside {@link de.bombshooter.bombshooter.MediaManager.TileablePImageDeserializer}
+     *
+     * @param tileWidth The width of a tile
+     * @param tileHeight The height of a tile
+     */
     public void setTileSize(int tileWidth, int tileHeight) {
         this.tileWidth = tileWidth;
         this.tileHeight = tileHeight;

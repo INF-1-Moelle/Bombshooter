@@ -1,5 +1,6 @@
 package de.bombshooter.bombshooter.level;
 
+import de.bombshooter.bombshooter.GameWindow;
 import de.bombshooter.bombshooter.generics.DrawableElement;
 import processing.core.PGraphics;
 import processing.core.PVector;

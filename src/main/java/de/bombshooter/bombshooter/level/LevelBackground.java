@@ -19,10 +19,15 @@ public class LevelBackground extends LevelObject {
      * @param gfx The graphics object to draw on
      */
     @Override
-    protected void onDraw(PGraphics gfx) {
 
+    protected void onDraw(PGraphics gfx) {
         TileablePImage bg = GameWindow.getInstance().getMediaManager().loadImageById("level.background");
-        gfx.image(bg.getImage(), getPosition().x, getPosition().y);
+
+        for (int x = 0; x < getSize().x; x += bg.getTileWidth()) {
+            for (int y = 0; y < getSize().y; y += bg.getTileHeight()) {
+                gfx.image(bg.getImage(), x, y, bg.getTileWidth(), bg.getTileHeight(), bg.getTileWidth()*2,0,bg.getTileWidth()*3, bg.getTileHeight());
+            }
+        }
 
     }
 }
