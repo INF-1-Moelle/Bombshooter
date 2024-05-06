@@ -21,8 +21,8 @@ public class TownHall extends DamageableLevelObject {
     protected void onDraw(PGraphics gfx) {
         TileablePImage tileablePImage = GameWindow.getInstance().getMediaManager().loadImageById("level.townhall");
         gfx.pushMatrix();
-        //gfx.translate(getPosition().x, getPosition().y);
-        gfx.image(tileablePImage.getImage(), getPosition().y, getPosition().y, getSize().x, getSize().y);
+        gfx.translate(getPosition().x, getPosition().y);
+        gfx.image(tileablePImage.getImage(), 0, 0, getSize().x, getSize().y);
         gfx.popMatrix();
     }
 
