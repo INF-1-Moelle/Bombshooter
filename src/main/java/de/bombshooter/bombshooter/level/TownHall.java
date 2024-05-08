@@ -30,7 +30,7 @@ public class TownHall extends DamageableLevelObject {
 
         gfx.pushMatrix();
         gfx.translate(getPosition().x, getPosition().y);
-        gfx.image(tileablePImage.getImage(), -(tileablePImage.getWidth()/2f), -(tileablePImage.getHeight()/2f), getSize().x, getSize().y);
+        tileablePImage.image(gfx, -(tileablePImage.getWidth()/2f), -(tileablePImage.getHeight()/2f), getSize().x, getSize().y);
         ballista.onDraw(gfx);
         gfx.popMatrix();
     }
@@ -66,13 +66,13 @@ public class TownHall extends DamageableLevelObject {
             gfx.pushMatrix();
             gfx.rotate(angleBallista + gfx.HALF_PI);
             if (!shoot) {
-                gfx.image(ballistaImage.getImage(),
+                ballistaImage.image(gfx,
                         -(ballistaImage.getTileHeight()/2f), -(ballistaImage.getTileWidth()/2f),
                         ballistaImage.getTileHeight(), ballistaImage.getTileWidth(),
                         0, 0, 50, 50);
             } else {
                 int frame = GameWindow.getInstance().frameCount / 10 % 7;
-                gfx.image(ballistaImage.getImage(),
+                ballistaImage.image(gfx,
                         -(ballistaImage.getTileHeight()/2f), -(ballistaImage.getTileWidth()/2f),
                         ballistaImage.getTileHeight(), ballistaImage.getTileWidth(),
                         0, 50 * (frame), 50, 50 * (frame));
