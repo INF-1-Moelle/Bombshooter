@@ -8,13 +8,13 @@ import processing.core.PVector;
 
 public class Crosshair extends UIElement {
 
-        public Crosshair(PVector position, PVector size, String id) {
-            super(position, size, id);
-        }
+    public Crosshair(PVector position, PVector size, String id) {
+        super(position, size, id);
+    }
 
-        @Override
-        protected void onDraw(BGraphics gfx) {
-            TileablePImage crosshair = GameWindow.getInstance().getMediaManager().loadImageById("ui.crosshair");
-            crosshair.image(gfx, new PVector(GameWindow.getInstance().mouseX, GameWindow.getInstance().mouseY), new PVector(40, 40));
-        }
+    @Override
+    protected void onDraw(BGraphics gfx) {
+        TileablePImage crosshair = GameWindow.getInstance().getMediaManager().loadImageById("ui.crosshair");
+        crosshair.image(gfx, new PVector(GameWindow.getInstance().mouseX, GameWindow.getInstance().mouseY), new PVector(40, 40));
+    }
 }

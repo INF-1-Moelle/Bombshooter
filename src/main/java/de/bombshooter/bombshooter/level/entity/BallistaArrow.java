@@ -38,4 +38,12 @@ public class BallistaArrow extends Arrow {
 
         gfx.popMatrix();
     }
+
+    @Override
+    public String toString() {
+        return "BallistaArrow{" +
+                "normalArrow=" + normalArrow +
+                ", shootFrame=" + shootFrame +
+                "} " + super.toString();
+    }
 }

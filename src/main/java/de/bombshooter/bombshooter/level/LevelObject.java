@@ -50,4 +50,12 @@ public abstract class LevelObject extends DrawableElement {
     public float getMaxRadius() {
         return 0.5f * (float) Math.sqrt(size.x * size.x + size.y * size.y);
     }
+
+    @Override
+    public String toString() {
+        return "LevelObject{" +
+                "position=" + position +
+                ", size=" + size +
+                "} " + super.toString();
+    }
 }

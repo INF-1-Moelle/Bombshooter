@@ -34,4 +34,12 @@ abstract class Enemy extends DamageableLevelObject {
         this.calcDirection();   //später nur dann, wenn ein neues Tile betreten wird (calcDirection sollte dann nen ganzes PathFinding machen)
         getPosition().add(direction.copy().mult(speed));
     }
+
+    @Override
+    public String toString() {
+        return "Enemy{" +
+                "speed=" + speed +
+                ", direction=" + direction +
+                "} " + super.toString();
+    }
 }

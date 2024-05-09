@@ -1,6 +1,7 @@
 package de.bombshooter.bombshooter.manage;
 
-import com.google.gson.*;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import de.bombshooter.bombshooter.GameWindow;
 import de.bombshooter.bombshooter.generics.TileablePImage;
 import org.slf4j.Logger;
@@ -11,41 +12,45 @@ import processing.core.PImage;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Type;
 import java.time.Duration;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class MediaManager {
 
     private String mediaLocation;
-    private final Map<String, JsonObject> textures;
+    private final Map<String, TileablePImage> textures;
     private final ConcurrentHashMap<String, MediaObject> imageCache = new ConcurrentHashMap<>();
     private GarbageCollectionThread gcThread;
     private Future<?> gcTask;
     private final Logger logger;
-    private final Gson GSON;
 
 
     public MediaManager() {
         textures = new HashMap<>();
         logger = LoggerFactory.getLogger(getClass());
-        GSON = new GsonBuilder()
-                .setPrettyPrinting()
-                .registerTypeAdapter(TileablePImage.class, new TileablePImageDeserializer())
-                .create();
     }
 
     public void init(String mediaDir, String version) throws IOException {
 
-        JsonObject mediaJson = JsonParser.parseReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/media.json")))).getAsJsonObject();
-        mediaLocation = mediaJson.get("game.mediadirformat").getAsString().replaceAll("\\$mediadir", mediaDir).replaceAll("\\$version", version);
+        try (InputStream mediaJsonStream = Objects.requireNonNull(getClass().getResourceAsStream("/media.json"))) {
+            JsonObject mediaJson = JsonParser.parseReader(new InputStreamReader(mediaJsonStream)).getAsJsonObject();
 
-        mediaJson.get("textures").getAsJsonObject().asMap().forEach((key, value) -> textures.put(key, value.getAsJsonObject()));
+            mediaLocation = mediaJson.get("game.mediadirformat").getAsString()
+                    .replaceAll("\\$mediadir", mediaDir)
+                    .replaceAll("\\$version", version);
+
+            mediaJson.get("textures").getAsJsonObject().asMap()
+                    .forEach((key, value) -> textures.put(key, TileablePImage.fromJson(value.getAsJsonObject())));
+        }
 
         startGarbageCollection();
     }
@@ -69,7 +74,7 @@ public class MediaManager {
 
             if (v == null) {
                 //Load the image when not cached
-                TileablePImage tileablePImage = GSON.fromJson(textures.get(id), TileablePImage.class);
+                TileablePImage tileablePImage = textures.get(id);
 
                 PImage loadedImg = GameWindow.getInstance().requestImage(mediaLocation + tileablePImage.getFileName());
 
@@ -90,25 +95,6 @@ public class MediaManager {
             v.setDeathTime(System.currentTimeMillis() + 30 * 1000);
             return v;
         }).tileablePImage;
-    }
-
-    static class TileablePImageDeserializer implements JsonDeserializer<TileablePImage> {
-        public TileablePImage deserialize(JsonElement e, Type t, JsonDeserializationContext context) {
-            JsonObject o = e.getAsJsonObject();
-
-            int tileWidth = 0;
-            int tileHeight = 0;
-            boolean tiled = o.get("tiled").getAsBoolean();
-
-            if(tiled) {
-                tileWidth = o.get("tilewidth").getAsInt();
-                tileHeight = o.get("tileheight").getAsInt();
-            }
-
-            return new TileablePImage(null, o.get("file").getAsString(),
-                    o.get("width").getAsInt(), o.get("height").getAsInt(),
-                    tileWidth, tileHeight, tiled);
-        }
     }
 
     static class MediaObject {

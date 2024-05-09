@@ -62,4 +62,11 @@ public abstract class DamageableLevelObject extends LevelObject {
      */
     protected abstract void onDeath();
 
+    @Override
+    public String toString() {
+        return "DamageableLevelObject{" +
+                "maxHealth=" + maxHealth +
+                ", health=" + health +
+                "} " + super.toString();
+    }
 }

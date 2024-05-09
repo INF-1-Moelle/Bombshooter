@@ -1,5 +1,6 @@
 package de.bombshooter.bombshooter;
 
+import com.jogamp.newt.opengl.GLWindow;
 import de.bombshooter.bombshooter.graphics.BGraphics;
 import de.bombshooter.bombshooter.level.Level;
 import de.bombshooter.bombshooter.manage.MediaManager;
@@ -7,7 +8,7 @@ import de.bombshooter.bombshooter.ui.UIHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import processing.core.PApplet;
-import processing.opengl.PGraphicsOpenGL;
+import processing.opengl.PSurfaceJOGL;
 
 import java.io.IOException;
 
@@ -50,7 +51,8 @@ public class GameWindow extends PApplet {
             System.exit(-1);
         }
 
-        size(displayWidth, displayHeight, BGraphics.class.getName());
+        size(1000, 1000, BGraphics.class.getName());
+        //fullScreen(BGraphics.class.getName());
     }
 
     /**
@@ -68,8 +70,9 @@ public class GameWindow extends PApplet {
         noStroke();
         imageMode(CENTER);
         noCursor();
+
         //https://github.com/benfry/processing4/blob/main/core/src/processing/opengl/Texture.java#L54-L68C44
-        ((PGraphicsOpenGL) g).textureSampling(2);
+        getGraphics().textureSampling(2);
     }
 
     /**
@@ -130,5 +133,13 @@ public class GameWindow extends PApplet {
 
     public BGraphics getGraphics() {
         return (BGraphics) super.getGraphics();
+    }
+
+    public PSurfaceJOGL getSurface() {
+        return (PSurfaceJOGL) super.getSurface();
+    }
+
+    public GLWindow getGlWindow() {
+        return (GLWindow) getSurface().getNative();
     }
 }

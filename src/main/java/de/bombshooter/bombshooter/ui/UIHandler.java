@@ -19,7 +19,6 @@ public class UIHandler {
 
     public void initDefaultElements(BGraphics gfx) {
         this.crosshair = new Crosshair(new PVector(0, 0), new PVector(50, 50), "crosshair");
-        crosshair.setVisible(true);
         addElement(crosshair);
     }
 

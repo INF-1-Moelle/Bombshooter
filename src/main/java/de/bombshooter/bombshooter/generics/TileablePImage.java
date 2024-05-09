@@ -1,7 +1,8 @@
 package de.bombshooter.bombshooter.generics;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import de.bombshooter.bombshooter.graphics.BGraphics;
-import de.bombshooter.bombshooter.manage.MediaManager;
 import processing.core.PImage;
 import processing.core.PVector;
 
@@ -25,7 +26,7 @@ public class TileablePImage {
     }
 
     /**
-     * Should not be used inside {@link MediaManager.TileablePImageDeserializer}
+     * Should not be used inside {@link TileablePImage#fromJson(JsonElement)}
      *
      * @param tileWidth  The width of a tile
      * @param tileHeight The height of a tile
@@ -39,10 +40,10 @@ public class TileablePImage {
      * Applies a centering to this texture (like this: {@code BGraphics.imageMode(CENTER)})
      *
      * @param gfx BGraphics instance
-     * @return    this
+     * @return this
      */
-    public TileablePImage center(BGraphics gfx){
-        gfx.translate(-getWidth()/2f, -getHeight()/2f);
+    public TileablePImage center(BGraphics gfx) {
+        gfx.translate(-getWidth() / 2f, -getHeight() / 2f);
         return this;
     }
 
@@ -51,9 +52,9 @@ public class TileablePImage {
      *
      * @param gfx   BGraphics instance
      * @param angle angle to rotate
-     * @return      this
+     * @return this
      */
-    public TileablePImage rotate(BGraphics gfx, float angle){
+    public TileablePImage rotate(BGraphics gfx, float angle) {
         gfx.rotate(angle);
         return this;
     }
@@ -64,9 +65,9 @@ public class TileablePImage {
      * @param gfx    BGraphics instance
      * @param angle  angle to rotate
      * @param offset offset to apply
-     * @return       this
+     * @return this
      */
-    public TileablePImage rotateWithOffset(BGraphics gfx, float angle, PVector offset){
+    public TileablePImage rotateWithOffset(BGraphics gfx, float angle, PVector offset) {
         gfx.translate(offset.x, offset.y);
         return rotate(gfx, angle);
     }
@@ -83,8 +84,8 @@ public class TileablePImage {
     /**
      * Draw the image at (0,0) with default size
      *
-     * @param gfx   BGraphics instance
-     * @param size  Size of the drawn Image
+     * @param gfx  BGraphics instance
+     * @param size Size of the drawn Image
      */
     public void image(BGraphics gfx, PVector size) {
         this.image(gfx, new PVector(), size);
@@ -119,10 +120,10 @@ public class TileablePImage {
     /**
      * Draw a cutout or tile of the image
      *
-     * @param gfx   BGraphics instance
-     * @param pos   Position of the Image
-     * @param size  Size of the drawn Image
-     * @param tile  n-th tile of the animation
+     * @param gfx  BGraphics instance
+     * @param pos  Position of the Image
+     * @param size Size of the drawn Image
+     * @param tile n-th tile of the animation
      */
     public void image(BGraphics gfx, PVector pos, PVector size, int tile) {
         gfx.image(this, pos, size, tile);
@@ -140,6 +141,26 @@ public class TileablePImage {
     public void image(BGraphics gfx, PVector pos, PVector size, int tileX, int tileY) {
         gfx.image(this, pos, size, tileX, tileY);
     }
+
+    public static TileablePImage fromJson(JsonElement e) {
+        JsonObject o = e.getAsJsonObject();
+
+        int width = o.get("width").getAsInt();
+        int height = o.get("height").getAsInt();
+        int tileWidth = width;
+        int tileHeight = height;
+        boolean tiled = o.get("tiled").getAsBoolean();
+
+        if (tiled) {
+            tileWidth = o.get("tilewidth").getAsInt();
+            tileHeight = o.get("tileheight").getAsInt();
+        }
+
+        return new TileablePImage(null, o.get("file").getAsString(),
+                width, height,
+                tileWidth, tileHeight, tiled);
+    }
+
 
     public void setImage(PImage image) {
         this.image = image;
@@ -182,10 +203,10 @@ public class TileablePImage {
     }
 
     public int getVerticalTileAmount() {
-        return getHeight()/getTileHeight();
+        return getHeight() / getTileHeight();
     }
 
     public int getHorizontalTileAmount() {
-        return getWidth()/getTileWidth();
+        return getWidth() / getTileWidth();
     }
 }

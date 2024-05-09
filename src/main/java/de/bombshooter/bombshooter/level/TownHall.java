@@ -43,6 +43,13 @@ public class TownHall extends DamageableLevelObject {
 
     }
 
+    @Override
+    public String toString() {
+        return "TownHall{" +
+                "ballista=" + ballista +
+                "} " + super.toString();
+    }
+
     static class Ballista extends LevelObject {
 
         private final ArrayList<Arrow> arrows;
@@ -98,6 +105,15 @@ public class TownHall extends DamageableLevelObject {
                     arrows.remove(arrow);
             }
 
+        }
+
+        @Override
+        public String toString() {
+            return "Ballista{" +
+                    "arrows=" + arrows +
+                    ", shootFrame=" + shootFrame +
+                    ", normalArrow=" + normalArrow +
+                    "} " + super.toString();
         }
     }
 }

@@ -9,4 +9,11 @@ public abstract class Arrow extends Projectile{
         super(pos, new PVector (3, 44));
         this.velocity = velocity;
     }
+
+    @Override
+    public String toString() {
+        return "Arrow{" +
+                "velocity=" + velocity +
+                "} " + super.toString();
+    }
 }

@@ -16,6 +16,7 @@ public abstract class DrawableElement {
 
     /**
      * Set the visibility of the element
+     *
      * @param visible
      */
     public void setVisible(boolean visible) {
@@ -31,7 +32,15 @@ public abstract class DrawableElement {
 
     /**
      * Draw the element
+     *
      * @param gfx
      */
     protected abstract void onDraw(BGraphics gfx);
+
+    @Override
+    public String toString() {
+        return "DrawableElement{" +
+                "visible=" + visible +
+                '}';
+    }
 }
