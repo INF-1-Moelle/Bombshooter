@@ -61,6 +61,7 @@ public class GameWindow extends PApplet {
     @Override
     public void setup() {
         level.initDefaultObjects(getGraphics());
+        uiHandler.initDefaultElements(getGraphics());
 
         surface.setResizable(true);
 
@@ -83,8 +84,10 @@ public class GameWindow extends PApplet {
 
         scale(2);
         translate((float) -width / 4, (float) -height / 4);
-        uiHandler.draw(getGraphics());
+
+
         level.draw(getGraphics());
+        uiHandler.draw(getGraphics());
     }
 
     /**

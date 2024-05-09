@@ -45,6 +45,12 @@
       "tilewidth": 25,
       "tileheight": 25
     },
+    "ui.crosshair": {
+      "file": "crosshair.png",
+      "width": 50,
+      "height": 50,
+      "tiled": false
+    },
     "ui.healthbar": {
       "file": "healthbar.png",
       "width": 46,

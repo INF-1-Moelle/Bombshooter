@@ -1,17 +1,26 @@
 package de.bombshooter.bombshooter.ui;
 
 import de.bombshooter.bombshooter.graphics.BGraphics;
+import de.bombshooter.bombshooter.ui.elements.Crosshair;
+import processing.core.PVector;
 
 import java.util.HashMap;
 
 public class UIHandler {
 
+    private Crosshair crosshair;
     private final HashMap<String, UIElement> elements;
     private float scale;
 
     public UIHandler() {
         elements = new HashMap<>();
         scale = 5;
+    }
+
+    public void initDefaultElements(BGraphics gfx) {
+        this.crosshair = new Crosshair(new PVector(0, 0), new PVector(50, 50), "crosshair");
+        crosshair.setVisible(true);
+        addElement(crosshair);
     }
 
     /**
