@@ -1,4 +1,4 @@
 package de.bombshooter.bombshooter.manage;
 
-public class MouseManager {
+public class InputManager {
 }

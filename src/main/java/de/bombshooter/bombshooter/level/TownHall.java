@@ -30,7 +30,7 @@ public class TownHall extends DamageableLevelObject {
 
         gfx.pushMatrix();
         gfx.translate(getPosition().x, getPosition().y);
-        gfx.image(tileablePImage.getImage(), -(tileablePImage.getWidth()/2f), -(tileablePImage.getHeight()/2f), getSize().x, getSize().y);
+        gfx.image(tileablePImage.getImage(), -(tileablePImage.getWidth() / 2f), -(tileablePImage.getHeight() / 2f), getSize().x, getSize().y);
         ballista.onDraw(gfx);
         gfx.popMatrix();
     }
@@ -43,10 +43,10 @@ public class TownHall extends DamageableLevelObject {
 
     }
 
-    class Ballista extends LevelObject{
+    class Ballista extends LevelObject {
 
-        ArrayList<Arrow> arrows = new ArrayList<>();
-        boolean shoot = false;
+        private ArrayList<Arrow> arrows = new ArrayList<>();
+        private int shootFrame = 0;
 
         public Ballista(PVector pos, PVector size) {
             super(pos, size);
@@ -54,7 +54,7 @@ public class TownHall extends DamageableLevelObject {
 
         public void shootArrow(PVector direction) {
             arrows.add(new BallistaArrow(getPosition(), direction));
-            shoot = true;
+            shootFrame = GameWindow.getInstance().frameCount;
         }
 
         @Override
@@ -65,24 +65,17 @@ public class TownHall extends DamageableLevelObject {
 
             gfx.pushMatrix();
             gfx.rotate(angleBallista + gfx.HALF_PI);
-            if (!shoot) {
-                gfx.image(ballistaImage.getImage(),
-                        -(ballistaImage.getTileHeight()/2f), -(ballistaImage.getTileWidth()/2f),
-                        ballistaImage.getTileHeight(), ballistaImage.getTileWidth(),
-                        0, 0, 50, 50);
-            } else {
-                int frame = GameWindow.getInstance().frameCount / 10 % 7;
-                gfx.image(ballistaImage.getImage(),
-                        -(ballistaImage.getTileHeight()/2f), -(ballistaImage.getTileWidth()/2f),
-                        ballistaImage.getTileHeight(), ballistaImage.getTileWidth(),
-                        0, 50 * (frame), 50, 50 * (frame));
-                if (frame == 6) {
-                    shoot = false;
-                }
-            }
+
+            int frame = (GameWindow.getInstance().frameCount - shootFrame) / 10;
+            frame = (Math.min(frame, 6) + 1) % 7;
+
+            gfx.image(ballistaImage.getImage(), -(ballistaImage.getTileWidth() / 2f), -(ballistaImage.getTileHeight() / 2f),
+                    ballistaImage.getTileWidth(), ballistaImage.getTileHeight(),
+                    0, ballistaImage.getTileHeight() * frame, ballistaImage.getWidth(), ballistaImage.getTileHeight() * (frame + 1));
+
 
             //TODO change to global mouse Handling in MouseHandler
-            if(GameWindow.getInstance().mousePressed){
+            if (GameWindow.getInstance().mousePressed && frame == 0) {
                 shootArrow(mouse.copy().sub(getPosition()).normalize().mult(10));
             }
             gfx.popMatrix();

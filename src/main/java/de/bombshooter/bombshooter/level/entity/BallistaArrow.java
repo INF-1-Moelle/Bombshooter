@@ -18,7 +18,6 @@ public class BallistaArrow extends Arrow{
         TileablePImage texture = GameWindow.getInstance().getMediaManager().loadImageById("level.ballista.arrow");
 
         gfx.pushMatrix();
-        gfx.translate(getPosition().x, getPosition().y);
         gfx.rotate(direction.heading()- PConstants.HALF_PI);
         gfx.image(texture.getImage(), 0, 0, texture.getWidth(), texture.getHeight());
         gfx.popMatrix();

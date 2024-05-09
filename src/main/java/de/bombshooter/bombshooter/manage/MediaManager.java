@@ -1,6 +1,7 @@
-package de.bombshooter.bombshooter;
+package de.bombshooter.bombshooter.manage;
 
 import com.google.gson.*;
+import de.bombshooter.bombshooter.GameWindow;
 import de.bombshooter.bombshooter.generics.TileablePImage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +9,7 @@ import processing.awt.PImageAWT;
 import processing.core.PImage;
 
 import javax.imageio.ImageIO;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
@@ -38,7 +40,7 @@ public class MediaManager {
                 .create();
     }
 
-    protected void init(String mediaDir, String version) throws IOException {
+    public void init(String mediaDir, String version) throws IOException {
 
         JsonObject mediaJson = JsonParser.parseReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/media.json")))).getAsJsonObject();
         mediaLocation = mediaJson.get("game.mediadirformat").getAsString().replaceAll("\\$mediadir", mediaDir).replaceAll("\\$version", version);
@@ -70,7 +72,8 @@ public class MediaManager {
                 TileablePImage tileablePImage = GSON.fromJson(textures.get(id), TileablePImage.class);
 
                 PImage loadedImg = GameWindow.getInstance().requestImage(mediaLocation + tileablePImage.getFileName());
-                if (loadedImg == null) {
+
+                if (!new File(mediaLocation + tileablePImage.getFileName()).exists() || loadedImg == null) {
                     try {
                         loadedImg = new PImageAWT(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/missingtexture.png"))));
                     } catch (IOException e) {
@@ -80,11 +83,11 @@ public class MediaManager {
 
                 tileablePImage.setImage(loadedImg);
 
-                return new MediaObject(System.currentTimeMillis() + 30*1000, tileablePImage);
+                return new MediaObject(System.currentTimeMillis() + 30 * 1000, tileablePImage);
             }
 
             //return the cached image and renew its cache lifespan
-            v.setDeathtime(System.currentTimeMillis() + 30*1000);
+            v.setDeathtime(System.currentTimeMillis() + 30 * 1000);
             return v;
         }).tileablePImage;
     }
@@ -110,7 +113,7 @@ public class MediaManager {
             this.tileablePImage = image;
         }
 
-        public void setDeathtime(long deathtime){
+        public void setDeathtime(long deathtime) {
             this.deathtime = deathtime;
         }
 
@@ -135,7 +138,7 @@ public class MediaManager {
                 imageCache.forEach((k, v) -> {
                     long time = new Date().getTime();
 
-                    if (time >= v.getDeathtime()){
+                    if (time >= v.getDeathtime()) {
                         imageCache.remove(k);
                     }
                 });

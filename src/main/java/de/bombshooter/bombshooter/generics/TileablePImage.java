@@ -1,5 +1,6 @@
 package de.bombshooter.bombshooter.generics;
 
+import de.bombshooter.bombshooter.manage.MediaManager;
 import processing.core.PImage;
 
 public class TileablePImage {
@@ -20,7 +21,7 @@ public class TileablePImage {
     }
 
     /**
-     * Should not be used inside {@link de.bombshooter.bombshooter.MediaManager.TileablePImageDeserializer}
+     * Should not be used inside {@link MediaManager.TileablePImageDeserializer}
      *
      * @param tileWidth The width of a tile
      * @param tileHeight The height of a tile

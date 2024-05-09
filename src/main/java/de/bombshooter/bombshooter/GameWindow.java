@@ -1,11 +1,14 @@
 package de.bombshooter.bombshooter;
 
+import com.jogamp.newt.opengl.GLWindow;
 import de.bombshooter.bombshooter.level.Level;
+import de.bombshooter.bombshooter.manage.MediaManager;
 import de.bombshooter.bombshooter.ui.UIHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import processing.core.PApplet;
 import processing.opengl.PGraphicsOpenGL;
+import processing.opengl.PSurfaceJOGL;
 
 import java.io.IOException;
 
