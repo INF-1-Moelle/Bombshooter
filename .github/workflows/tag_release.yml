@@ -2,38 +2,44 @@ name: Release Jar on Tag
 on:
   push:
     tags:
-    - 'v[0-9]+.[0-9]+.[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+'
   workflow_dispatch:
+
+permissions:
+  contents: write
+  workflow: write
+  actions: write
+  statuses: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up JDK 21
-      uses: actions/setup-java@v4
-      with:
-        java-version: 21
-        distribution: 'zulu'
-        cache: maven
-    - name: Build with Maven
-      run: mvn install --file pom.xml
-    - name: Extract Maven project version
-      run: echo ::set-output name=version::$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
-      id: project
-    - name: Build archive
-      shell: bash
-      run: |
-        mkdir dist
-        cp target/bombshooter-${{ steps.project.outputs.version }}* "dist/"
-    - uses: actions/upload-artifact@v4
-      with:
-        name: bins-bombshooter
-        path: dist
-        overwrite: true
+      - uses: actions/checkout@v3
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: 21
+          distribution: 'zulu'
+          cache: maven
+      - name: Build with Maven
+        run: mvn install --file pom.xml
+      - name: Extract Maven project version
+        run: echo ::set-output name=version::$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
+        id: project
+      - name: Build archive
+        shell: bash
+        run: |
+          mkdir dist
+          cp target/bombshooter-${{ steps.project.outputs.version }}* "dist/"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bins-bombshooter
+          path: dist
+          overwrite: true
 
   publish:
-    needs: [build]
+    needs: [ build ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout sources
@@ -46,7 +52,7 @@ jobs:
           name: bins-bombshooter
           path: dist
       - name: Display-file-strucutre
-        run:  ls -al dist/*
+        run: ls -al dist/*
 
       - name: Calculate tag name
         run: |
