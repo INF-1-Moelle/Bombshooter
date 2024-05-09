@@ -1,6 +1,8 @@
-package de.bombshooter.bombshooter;
+package de.bombshooter.bombshooter.manage;
 
-import com.google.gson.*;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import de.bombshooter.bombshooter.GameWindow;
 import de.bombshooter.bombshooter.generics.TileablePImage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,40 +10,47 @@ import processing.awt.PImageAWT;
 import processing.core.PImage;
 
 import javax.imageio.ImageIO;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Type;
 import java.time.Duration;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.*;
+import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class MediaManager {
 
     private String mediaLocation;
-    private final Map<String, JsonObject> textures;
+    private final Map<String, TileablePImage> textures;
     private final ConcurrentHashMap<String, MediaObject> imageCache = new ConcurrentHashMap<>();
     private GarbageCollectionThread gcThread;
     private Future<?> gcTask;
     private final Logger logger;
-    private final Gson GSON;
 
 
     public MediaManager() {
         textures = new HashMap<>();
         logger = LoggerFactory.getLogger(getClass());
-        GSON = new GsonBuilder()
-                .setPrettyPrinting()
-                .registerTypeAdapter(TileablePImage.class, new TileablePImageDeserializer())
-                .create();
     }
 
-    protected void init(String mediaDir, String version) throws IOException {
+    public void init(String mediaDir, String version) throws IOException {
 
-        JsonObject mediaJson = JsonParser.parseReader(new InputStreamReader(getClass().getResourceAsStream("/media.json"))).getAsJsonObject();
-        mediaLocation = mediaJson.get("game.mediadirformat").getAsString().replaceAll("\\$mediadir", mediaDir).replaceAll("\\$version", version);
+        try (InputStream mediaJsonStream = Objects.requireNonNull(getClass().getResourceAsStream("/media.json"))) {
+            JsonObject mediaJson = JsonParser.parseReader(new InputStreamReader(mediaJsonStream)).getAsJsonObject();
 
-        mediaJson.get("textures").getAsJsonObject().asMap().forEach((key, value) -> textures.put(key, value.getAsJsonObject()));
+            mediaLocation = mediaJson.get("game.mediadirformat").getAsString()
+                    .replaceAll("\\$mediadir", mediaDir)
+                    .replaceAll("\\$version", version);
+
+            mediaJson.get("textures").getAsJsonObject().asMap()
+                    .forEach((key, value) -> textures.put(key, TileablePImage.fromJson(value.getAsJsonObject())));
+        }
 
         startGarbageCollection();
     }
@@ -63,15 +72,15 @@ public class MediaManager {
     public TileablePImage loadImageById(String id) {
         return imageCache.compute(id, (k, v) -> {
 
-            //Load the image when not cached
             if (v == null) {
-
-                TileablePImage tileablePImage = GSON.fromJson(textures.get(id), TileablePImage.class);
+                //Load the image when not cached
+                TileablePImage tileablePImage = textures.get(id);
 
                 PImage loadedImg = GameWindow.getInstance().requestImage(mediaLocation + tileablePImage.getFileName());
-                if (loadedImg == null) {
+
+                if (!new File(mediaLocation + tileablePImage.getFileName()).exists() || loadedImg == null) {
                     try {
-                        loadedImg = new PImageAWT(ImageIO.read(getClass().getResourceAsStream("/missingtexture.png")));
+                        loadedImg = new PImageAWT(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/missingtexture.png"))));
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -79,42 +88,30 @@ public class MediaManager {
 
                 tileablePImage.setImage(loadedImg);
 
-                return new MediaObject(30L, tileablePImage);
+                return new MediaObject(System.currentTimeMillis() + 30 * 1000, tileablePImage);
             }
 
             //return the cached image and renew its cache lifespan
-            v.setLifespan(30L);
+            v.setDeathTime(System.currentTimeMillis() + 30 * 1000);
             return v;
-
         }).tileablePImage;
     }
 
-    static class TileablePImageDeserializer implements JsonDeserializer<TileablePImage> {
-        public TileablePImage deserialize(JsonElement e, Type t, JsonDeserializationContext context) {
-            JsonObject o = e.getAsJsonObject();
-            var raw = new TileablePImage(null, o.get("file").getAsString(), o.get("width").getAsInt(), o.get("height").getAsInt(), o.get("tiled").getAsBoolean());
-            if (raw.isTiled()) {
-                raw.setTileSize(o.get("tilewidth").getAsInt(), o.get("tileheight").getAsInt());
-            }
-            return raw;
-        }
-    }
-
     static class MediaObject {
-        private long lifespan;
+        private long deathTime;
         private final TileablePImage tileablePImage;
 
-        public MediaObject(long lifespan, TileablePImage image) {
-            this.lifespan = lifespan;
+        public MediaObject(long deathTime, TileablePImage image) {
+            this.deathTime = deathTime;
             this.tileablePImage = image;
         }
 
-        public long getLifespan() {
-            return lifespan;
+        public void setDeathTime(long deathTime) {
+            this.deathTime = deathTime;
         }
 
-        public void setLifespan(long lifespan) {
-            this.lifespan = lifespan;
+        public long getDeathTime() {
+            return deathTime;
         }
     }
 
@@ -132,10 +129,10 @@ public class MediaManager {
                 }
 
                 imageCache.forEach((k, v) -> {
-                    if (v.getLifespan() <= 0) {
+                    long time = new Date().getTime();
+
+                    if (time >= v.getDeathTime()) {
                         imageCache.remove(k);
-                    } else {
-                        v.setLifespan(v.getLifespan() - 1);
                     }
                 });
             }

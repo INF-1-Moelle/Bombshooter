@@ -1,22 +1,19 @@
 package de.bombshooter.bombshooter.level.entity;
 
-import de.bombshooter.bombshooter.level.LevelObject;
-import processing.core.PGraphics;
 import processing.core.PVector;
 
-public class Arrow extends LevelObject {
+public abstract class Arrow extends Projectile{
+    protected PVector velocity;
 
-    public Arrow(PVector pos, PVector size){
-        super(pos, size);
+    public Arrow(PVector pos, PVector velocity){
+        super(pos, new PVector (3, 44));
+        this.velocity = velocity;
     }
 
-    /**
-     * Draw the element
-     * Should be called in the draw method of {@link de.bombshooter.bombshooter.level.Level}
-     * @param gfx The graphics object to draw on
-     */
     @Override
-    protected void onDraw(PGraphics gfx) {
-
+    public String toString() {
+        return "Arrow{" +
+                "velocity=" + velocity +
+                "} " + super.toString();
     }
 }

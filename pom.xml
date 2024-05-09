@@ -6,7 +6,7 @@
 
     <groupId>de.bombshooter</groupId>
     <artifactId>bombshooter</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.0.5-RC.1</version>
     <name>bombshooter</name>
     <description>bombshooter</description>
     <url>https://github.com/INF-1-Moelle/Bombshooter</url>
@@ -154,7 +154,7 @@
                 <executions>
                     <execution>
                         <id>default-jar</id>
-                        <phase/>
+                        <phase>none</phase>
                     </execution>
                 </executions>
             </plugin>

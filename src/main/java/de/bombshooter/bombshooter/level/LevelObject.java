@@ -1,7 +1,7 @@
 package de.bombshooter.bombshooter.level;
 
 import de.bombshooter.bombshooter.generics.DrawableElement;
-import processing.core.PGraphics;
+import de.bombshooter.bombshooter.graphics.BGraphics;
 import processing.core.PVector;
 
 public abstract class LevelObject extends DrawableElement {
@@ -20,7 +20,7 @@ public abstract class LevelObject extends DrawableElement {
      * Should be called in the draw method of {@link Level}
      * @param gfx the graphics object to draw on
      */
-    public void draw(PGraphics gfx) {
+    public void draw(BGraphics gfx) {
         onDraw(gfx);
     }
 
@@ -40,5 +40,22 @@ public abstract class LevelObject extends DrawableElement {
      */
     public PVector getSize() {
         return size;
+    }
+
+    /**
+     * Retrieve the maximum radius (half of diagonal) of the object
+     *
+     * @return max radius
+     */
+    public float getMaxRadius() {
+        return 0.5f * (float) Math.sqrt(size.x * size.x + size.y * size.y);
+    }
+
+    @Override
+    public String toString() {
+        return "LevelObject{" +
+                "position=" + position +
+                ", size=" + size +
+                "} " + super.toString();
     }
 }

@@ -1,11 +1,14 @@
 package de.bombshooter.bombshooter;
 
+import com.jogamp.newt.opengl.GLWindow;
+import de.bombshooter.bombshooter.graphics.BGraphics;
 import de.bombshooter.bombshooter.level.Level;
+import de.bombshooter.bombshooter.manage.MediaManager;
 import de.bombshooter.bombshooter.ui.UIHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import processing.core.PApplet;
-import processing.opengl.PGraphicsOpenGL;
+import processing.opengl.PSurfaceJOGL;
 
 import java.io.IOException;
 
@@ -48,7 +51,8 @@ public class GameWindow extends PApplet {
             System.exit(-1);
         }
 
-        size(displayWidth, displayHeight, P2D);
+        size(1000, 1000, BGraphics.class.getName());
+        //fullScreen(BGraphics.class.getName());
     }
 
     /**
@@ -58,12 +62,17 @@ public class GameWindow extends PApplet {
      */
     @Override
     public void setup() {
-        ((PGraphicsOpenGL) g).textureSampling(2);    //https://github.com/benfry/processing4/blob/main/core/src/processing/opengl/Texture.java#L54-L68C44
-        frameRate(60);
         level.initDefaultObjects(getGraphics());
+        uiHandler.initDefaultElements(getGraphics());
+
         surface.setResizable(true);
+
         noStroke();
-        background(0);
+        imageMode(CENTER);
+        noCursor();
+
+        //https://github.com/benfry/processing4/blob/main/core/src/processing/opengl/Texture.java#L54-L68C44
+        getGraphics().textureSampling(2);
     }
 
     /**
@@ -75,10 +84,13 @@ public class GameWindow extends PApplet {
     public void draw() {
         background(255);
         fill(0);
-        ellipse(mouseX, mouseY, 20, 20);
 
-        uiHandler.draw(getGraphics());
+        scale(2);
+        translate((float) -width / 4, (float) -height / 4);
+
+
         level.draw(getGraphics());
+        uiHandler.draw(getGraphics());
     }
 
     /**
@@ -117,5 +129,17 @@ public class GameWindow extends PApplet {
      */
     public Level getLevel() {
         return level;
+    }
+
+    public BGraphics getGraphics() {
+        return (BGraphics) super.getGraphics();
+    }
+
+    public PSurfaceJOGL getSurface() {
+        return (PSurfaceJOGL) super.getSurface();
+    }
+
+    public GLWindow getGlWindow() {
+        return (GLWindow) getSurface().getNative();
     }
 }

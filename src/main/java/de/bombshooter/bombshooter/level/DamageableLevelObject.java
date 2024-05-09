@@ -4,10 +4,10 @@ import processing.core.PVector;
 
 public abstract class DamageableLevelObject extends LevelObject {
 
-    private int maxHealth;
-    private int health;
+    private float maxHealth;
+    private float health;
 
-    public DamageableLevelObject(PVector pos, PVector size, int maxHealth) {
+    public DamageableLevelObject(PVector pos, PVector size, float maxHealth) {
         super(pos, size);
         this.maxHealth = maxHealth;
         this.health = maxHealth;
@@ -17,8 +17,8 @@ public abstract class DamageableLevelObject extends LevelObject {
      * @param damage the damage to apply
      * @return the new health
      */
-    public int applyDamage(int damage) {
-        int health = getHealth();
+    public float applyDamage(float damage) {
+        float health = getHealth();
         if (health - damage > 0) {
             health -= damage;
         } else {
@@ -32,28 +32,28 @@ public abstract class DamageableLevelObject extends LevelObject {
      * @param healing the healing to apply
      * @return the new health
      */
-    public int applyHealing(int healing) {
+    public float applyHealing(float healing) {
         return applyDamage(-healing);
     }
 
     /**
      * @return the max health
      */
-    public int getMaxHealth() {
+    public float getMaxHealth() {
         return maxHealth;
     }
 
     /**
      * @return the current health
      */
-    public int getHealth() {
+    public float getHealth() {
         return health;
     }
 
     /**
      * @param maxHealth the new health
      */
-    public void setMaxHealth(int maxHealth) {
+    public void setMaxHealth(float maxHealth) {
         this.maxHealth = maxHealth;
     }
 
@@ -62,4 +62,11 @@ public abstract class DamageableLevelObject extends LevelObject {
      */
     protected abstract void onDeath();
 
+    @Override
+    public String toString() {
+        return "DamageableLevelObject{" +
+                "maxHealth=" + maxHealth +
+                ", health=" + health +
+                "} " + super.toString();
+    }
 }

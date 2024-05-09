@@ -15,6 +15,42 @@
       "height": 60,
       "tiled": false
     },
+    "level.thief": {
+      "file": "thief.png",
+      "width": 200,
+      "height": 500,
+      "tiled": true,
+      "tilewidth": 50,
+      "tileheight":50
+    },
+    "level.ballista":{
+      "file": "ballista.png",
+      "width": 50,
+      "height": 350,
+      "tiled": true,
+      "tilewidth": 50,
+      "tileheight": 50
+    },
+    "level.ballista.arrow":{
+      "file": "ballista_arrow.png",
+      "width": 25,
+      "height": 25,
+      "tiled": false
+    },
+    "level.ballista.arrowFX":{
+      "file": "ballista_arrowFX.png",
+      "width": 25,
+      "height": 250,
+      "tiled": true,
+      "tilewidth": 25,
+      "tileheight": 25
+    },
+    "ui.crosshair": {
+      "file": "crosshair.png",
+      "width": 50,
+      "height": 50,
+      "tiled": false
+    },
     "ui.healthbar": {
       "file": "healthbar.png",
       "width": 46,

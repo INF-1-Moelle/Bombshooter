@@ -2,7 +2,7 @@ package de.bombshooter.bombshooter.ui;
 
 import de.bombshooter.bombshooter.GameWindow;
 import de.bombshooter.bombshooter.generics.DrawableElement;
-import processing.core.PGraphics;
+import de.bombshooter.bombshooter.graphics.BGraphics;
 import processing.core.PVector;
 
 import java.util.ArrayList;
@@ -47,7 +47,7 @@ public abstract class UIElement extends DrawableElement {
      * Should be called in the draw method of {@link UIHandler}
      * @param gfx the graphics object to draw on
      */
-    public void draw(PGraphics gfx) {
+    public void draw(BGraphics gfx) {
 
         // background
         onDraw(gfx);
