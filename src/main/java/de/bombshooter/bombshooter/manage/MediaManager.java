@@ -87,7 +87,7 @@ public class MediaManager {
             }
 
             //return the cached image and renew its cache lifespan
-            v.setDeathtime(System.currentTimeMillis() + 30 * 1000);
+            v.setDeathTime(System.currentTimeMillis() + 30 * 1000);
             return v;
         }).tileablePImage;
     }
@@ -96,29 +96,36 @@ public class MediaManager {
         public TileablePImage deserialize(JsonElement e, Type t, JsonDeserializationContext context) {
             JsonObject o = e.getAsJsonObject();
 
-            var raw = new TileablePImage(null, o.get("file").getAsString(), o.get("width").getAsInt(), o.get("height").getAsInt(), o.get("tiled").getAsBoolean());
-            if (raw.isTiled()) {
-                raw.setTileSize(o.get("tilewidth").getAsInt(), o.get("tileheight").getAsInt());
+            int tileWidth = 0;
+            int tileHeight = 0;
+            boolean tiled = o.get("tiled").getAsBoolean();
+
+            if(tiled) {
+                tileWidth = o.get("tilewidth").getAsInt();
+                tileHeight = o.get("tileheight").getAsInt();
             }
-            return raw;
+
+            return new TileablePImage(null, o.get("file").getAsString(),
+                    o.get("width").getAsInt(), o.get("height").getAsInt(),
+                    tileWidth, tileHeight, tiled);
         }
     }
 
     static class MediaObject {
-        private long deathtime;
+        private long deathTime;
         private final TileablePImage tileablePImage;
 
-        public MediaObject(long deathtime, TileablePImage image) {
-            this.deathtime = deathtime;
+        public MediaObject(long deathTime, TileablePImage image) {
+            this.deathTime = deathTime;
             this.tileablePImage = image;
         }
 
-        public void setDeathtime(long deathtime) {
-            this.deathtime = deathtime;
+        public void setDeathTime(long deathTime) {
+            this.deathTime = deathTime;
         }
 
-        public long getDeathtime() {
-            return deathtime;
+        public long getDeathTime() {
+            return deathTime;
         }
     }
 
@@ -138,7 +145,7 @@ public class MediaManager {
                 imageCache.forEach((k, v) -> {
                     long time = new Date().getTime();
 
-                    if (time >= v.getDeathtime()) {
+                    if (time >= v.getDeathTime()) {
                         imageCache.remove(k);
                     }
                 });

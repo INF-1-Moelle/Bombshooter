@@ -26,7 +26,7 @@
     "level.ballista":{
       "file": "ballista.png",
       "width": 50,
-      "height": 365,
+      "height": 350,
       "tiled": true,
       "tilewidth": 50,
       "tileheight": 50
@@ -36,6 +36,14 @@
       "width": 25,
       "height": 25,
       "tiled": false
+    },
+    "level.ballista.arrowFX":{
+      "file": "ballista_arrowFX.png",
+      "width": 25,
+      "height": 250,
+      "tiled": true,
+      "tilewidth": 25,
+      "tileheight": 25
     },
     "ui.healthbar": {
       "file": "healthbar.png",

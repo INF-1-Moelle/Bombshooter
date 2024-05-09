@@ -1,6 +1,6 @@
 package de.bombshooter.bombshooter.ui;
 
-import processing.core.PGraphics;
+import de.bombshooter.bombshooter.graphics.BGraphics;
 
 import java.util.HashMap;
 
@@ -57,7 +57,7 @@ public class UIHandler {
      *
      * @param gfx the graphics object to draw the elements on
      */
-    public void draw(PGraphics gfx) {
+    public void draw(BGraphics gfx) {
         for (UIElement element : elements.values()) {
             if (element.isVisible()) {
                 element.draw(gfx);

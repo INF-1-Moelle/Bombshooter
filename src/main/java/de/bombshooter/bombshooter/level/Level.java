@@ -1,8 +1,8 @@
 package de.bombshooter.bombshooter.level;
 
 import de.bombshooter.bombshooter.GameWindow;
+import de.bombshooter.bombshooter.graphics.BGraphics;
 import de.bombshooter.bombshooter.ui.elements.Bar;
-import processing.core.PGraphics;
 import processing.core.PVector;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class Level {
      *
      * @param gfx the graphics object to calculate the positions from
      */
-    public void initDefaultObjects(PGraphics gfx) {
+    public void initDefaultObjects(BGraphics gfx) {
 
         this.townHall = new TownHall(new PVector(gfx.width / 2f, gfx.height / 2f), new PVector(60, 60));
 
@@ -59,7 +59,7 @@ public class Level {
      *
      * @param gfx the graphics object to draw the elements on
      */
-    public void draw(PGraphics gfx) {
+    public void draw(BGraphics gfx) {
         for (LevelObject element : elements) {
             if (element.isVisible()) {
                 element.draw(gfx);

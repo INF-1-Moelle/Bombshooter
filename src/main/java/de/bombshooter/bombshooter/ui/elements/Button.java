@@ -1,7 +1,7 @@
 package de.bombshooter.bombshooter.ui.elements;
 
+import de.bombshooter.bombshooter.graphics.BGraphics;
 import de.bombshooter.bombshooter.ui.UIElement;
-import processing.core.PGraphics;
 import processing.core.PVector;
 
 public class Button extends UIElement {
@@ -18,7 +18,7 @@ public class Button extends UIElement {
      * @param gfx The graphics object to draw on
      */
     @Override
-    protected void onDraw(PGraphics gfx) {
+    protected void onDraw(BGraphics gfx) {
         gfx.fill(0);
         gfx.rect(this.getPosition().x, getPosition().y, getSize().x, getSize().y);
     }

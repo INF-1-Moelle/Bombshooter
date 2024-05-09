@@ -2,7 +2,6 @@ package de.bombshooter.bombshooter.level.entity;
 
 import de.bombshooter.bombshooter.GameWindow;
 import de.bombshooter.bombshooter.level.DamageableLevelObject;
-import processing.core.PGraphics;
 import processing.core.PVector;
 
 abstract class Enemy extends DamageableLevelObject {
@@ -35,12 +34,4 @@ abstract class Enemy extends DamageableLevelObject {
         this.calcDirection();   //später nur dann, wenn ein neues Tile betreten wird (calcDirection sollte dann nen ganzes PathFinding machen)
         getPosition().add(direction.copy().mult(speed));
     }
-
-    /**
-     * Draw the element
-     * Should be called in the draw method of {@link de.bombshooter.bombshooter.level.Level}
-     * @param gfx The graphics object to draw on
-     */
-    @Override
-    protected abstract void onDraw(PGraphics gfx);
 }

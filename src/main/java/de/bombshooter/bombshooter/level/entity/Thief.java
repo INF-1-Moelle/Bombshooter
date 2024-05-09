@@ -2,7 +2,7 @@ package de.bombshooter.bombshooter.level.entity;
 
 import de.bombshooter.bombshooter.GameWindow;
 import de.bombshooter.bombshooter.generics.TileablePImage;
-import processing.core.PGraphics;
+import de.bombshooter.bombshooter.graphics.BGraphics;
 import processing.core.PVector;
 
 public class Thief extends Enemy {
@@ -16,7 +16,7 @@ public class Thief extends Enemy {
     }
 
     @Override
-    protected void onDraw(PGraphics gfx) {
+    protected void onDraw(BGraphics gfx) {
         gfx.pushMatrix();
         gfx.translate(getPosition().x, getPosition().y);
         gfx.rotate(direction.heading());
@@ -24,7 +24,7 @@ public class Thief extends Enemy {
         TileablePImage tileablePImage = GameWindow.getInstance().getMediaManager().loadImageById("level.thief");
         int animation = 1;
 
-        tileablePImage.image(gfx, 0, 0, tileablePImage.getTileWidth() * 2, tileablePImage.getTileHeight() * 2, 0, tileablePImage.getTileHeight() * animation, tileablePImage.getTileWidth(), tileablePImage.getTileHeight() * (animation+1));
+        tileablePImage.image(gfx, new PVector(0, 0), tileablePImage.getSize().mult(2), 0, tileablePImage.getTileHeight() * animation, tileablePImage.getTileWidth(), tileablePImage.getTileHeight() * (animation+1));
         gfx.popMatrix();
     }
 }
