@@ -17,3 +17,4 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           assignees: Konsl, Robocraft999, Klassenserver7b
           numOfAssignee: 2
+          allowSelfAssign: false
