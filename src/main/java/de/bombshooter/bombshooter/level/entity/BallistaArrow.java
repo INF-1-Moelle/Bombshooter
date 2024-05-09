@@ -6,9 +6,9 @@ import processing.core.PConstants;
 import processing.core.PGraphics;
 import processing.core.PVector;
 
-public class BallistaArrow extends Arrow{
+public class BallistaArrow extends Arrow {
 
-    public BallistaArrow(PVector pos, PVector direction){
+    public BallistaArrow(PVector pos, PVector direction) {
         super(pos, direction);
     }
 
@@ -18,8 +18,7 @@ public class BallistaArrow extends Arrow{
         TileablePImage texture = GameWindow.getInstance().getMediaManager().loadImageById("level.ballista.arrow");
 
         gfx.pushMatrix();
-        gfx.rotate(direction.heading()- PConstants.HALF_PI);
-        texture.image(gfx);
+        gfx.rotate(direction.heading() - PConstants.HALF_PI);
         gfx.popMatrix();
     }
 }
