@@ -36,7 +36,7 @@ public class Bar extends UIElement {
         //
         //background
         int offset = progress * tileablePImage.getTileHeight();
-        gfx.image(tileablePImage.getImage(), 0, 0, getSize().x * getScale(), getSize().y * getScale(),
+        tileablePImage.image(gfx, 0, 0, getSize().x * getScale(), getSize().y * getScale(),
                 0, offset, tileablePImage.getTileWidth(), tileablePImage.getTileHeight() + offset);
         gfx.popMatrix();
 

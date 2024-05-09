@@ -19,7 +19,7 @@ public class BallistaArrow extends Arrow{
 
         gfx.pushMatrix();
         gfx.rotate(direction.heading()- PConstants.HALF_PI);
-        gfx.image(texture.getImage(), 0, 0, texture.getWidth(), texture.getHeight());
+        texture.image(gfx);
         gfx.popMatrix();
     }
 }
