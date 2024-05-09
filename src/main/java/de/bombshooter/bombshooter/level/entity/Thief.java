@@ -24,7 +24,7 @@ public class Thief extends Enemy {
         TileablePImage tileablePImage = GameWindow.getInstance().getMediaManager().loadImageById("level.thief");
         int animation = 1;
 
-        gfx.image(gfx, 0, 0, tileablePImage.getTileWidth() * 2, tileablePImage.getTileHeight() * 2, 0, tileablePImage.getTileHeight() * animation, tileablePImage.getTileWidth(), tileablePImage.getTileHeight() * (animation+1));
+        tileablePImage.image(gfx, 0, 0, tileablePImage.getTileWidth() * 2, tileablePImage.getTileHeight() * 2, 0, tileablePImage.getTileHeight() * animation, tileablePImage.getTileWidth(), tileablePImage.getTileHeight() * (animation+1));
         gfx.popMatrix();
     }
 }

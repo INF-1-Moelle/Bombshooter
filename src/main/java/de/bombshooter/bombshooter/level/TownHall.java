@@ -30,7 +30,7 @@ public class TownHall extends DamageableLevelObject {
 
         gfx.pushMatrix();
         gfx.translate(getPosition().x, getPosition().y);
-        gfx.image(tileablePImage.getImage(), -(tileablePImage.getWidth() / 2f), -(tileablePImage.getHeight() / 2f), getSize().x, getSize().y);
+        tileablePImage.image(gfx, -(tileablePImage.getWidth() / 2f), -(tileablePImage.getHeight() / 2f), getSize().x, getSize().y);
         ballista.onDraw(gfx);
         gfx.popMatrix();
     }
@@ -43,13 +43,15 @@ public class TownHall extends DamageableLevelObject {
 
     }
 
-    class Ballista extends LevelObject {
+    static class Ballista extends LevelObject {
 
-        private ArrayList<Arrow> arrows = new ArrayList<>();
-        private int shootFrame = 0;
+        private final ArrayList<Arrow> arrows;
+        private int shootFrame;
 
         public Ballista(PVector pos, PVector size) {
             super(pos, size);
+            arrows = new ArrayList<>();
+            shootFrame = 0;
         }
 
         public void shootArrow(PVector direction) {
@@ -69,7 +71,7 @@ public class TownHall extends DamageableLevelObject {
             int frame = (GameWindow.getInstance().frameCount - shootFrame) / 10;
             frame = (Math.min(frame, 6) + 1) % 7;
 
-            gfx.image(ballistaImage.getImage(), -(ballistaImage.getTileWidth() / 2f), -(ballistaImage.getTileHeight() / 2f),
+            ballistaImage.image(gfx, -(ballistaImage.getTileWidth() / 2f), -(ballistaImage.getTileHeight() / 2f),
                     ballistaImage.getTileWidth(), ballistaImage.getTileHeight(),
                     0, ballistaImage.getTileHeight() * frame, ballistaImage.getWidth(), ballistaImage.getTileHeight() * (frame + 1));
 
