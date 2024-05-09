@@ -6,9 +6,8 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
-  workflow: write
   actions: write
+  contents: write
   statuses: write
 
 jobs:
