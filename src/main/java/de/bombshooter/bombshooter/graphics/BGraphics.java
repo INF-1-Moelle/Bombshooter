@@ -64,4 +64,8 @@ public class BGraphics extends PGraphics2D {
     public static boolean isInRect(PVector pos, PVector rectP1, PVector rectP2){
         return pos.x >= rectP1.x && pos.x <= rectP2.x && pos.y >= rectP1.y && pos.y <= rectP2.y;
     }
+
+    public PVector getSize() {
+        return new PVector(width, height);
+    }
 }
